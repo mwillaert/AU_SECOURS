@@ -17,8 +17,11 @@ public class Level {
 
     }
 
-    public static void generateMeteor(){
+    public static void generateRandomMeteor(){
         Game.getTerrain();
+        int posx=(int)(Math.random()*Settings.SIZE_SCREEN_X/2+GameCamera.x);
+        Meteor m= new Meteor(posx,0,-10,10);
+        Game.addObject(m);
 
     }
 
