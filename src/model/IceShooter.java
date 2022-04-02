@@ -22,7 +22,11 @@ public class IceShooter extends Displayable {
 
     @Override
     public void calculCollision(List<Displayable> objects) {
+        for (Displayable d : objects) {
+            if (d instanceof Player) {
 
+            }
+        }
     }
 
     @Override
