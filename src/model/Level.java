@@ -18,7 +18,7 @@ public class Level {
 
     public static void handleLevel1(){
         long timeInterval=System.currentTimeMillis()-dateLastMeteor;
-        System.out.println(timeInterval);
+        //System.out.println(timeInterval);
         if (timeInterval>=timeUntilMeteor){
             generateRandomMeteor();
             dateLastMeteor=System.currentTimeMillis();
@@ -30,7 +30,7 @@ public class Level {
 
     public static void generateRandomMeteor(){
         Game.getTerrain();
-        int posx=(int)(Math.random()*Settings.SIZE_SCREEN_X/2+GameCamera.x);
+        int posx=(int)(Math.random()*Settings.SIZE_SCREEN_X/2-GameCamera.x);
         Meteor m= new Meteor(posx,0,-1,1);
         Game.addObject(m);
 

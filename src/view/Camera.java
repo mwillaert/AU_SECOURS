@@ -24,7 +24,7 @@ public class Camera extends JPanel {
 			g2d.drawImage(Resources.background[i], (int)(i*(GameCamera.x/20)), 0,null);
 		}
 		g.setColor(Color.WHITE);
-		g.fillRect(0,0,800,600);
+		g.fillRect(0,0,Settings.SIZE_SCREEN_X,Settings.SIZE_SCREEN_Y);
 		g2d.drawImage(Resources.level, GameCamera.x,0,null);
 		
 		for (Displayable d : Game.getListeDisplayable()) {

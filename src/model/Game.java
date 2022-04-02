@@ -19,6 +19,7 @@ public class Game {
 	public static void loop() {
 		p.move(Controller.left_pressed, Controller.right_pressed, Controller.up_pressed);
 		lvl.handleLevel();
+		System.out.println(GameCamera.x);
 		for (Displayable d : toRemove) {
 			listComponents.remove(d);
 		}
