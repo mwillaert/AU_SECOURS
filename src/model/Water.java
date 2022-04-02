@@ -4,18 +4,33 @@ import java.awt.*;
 import java.util.List;
 
 public class Water extends Displayable {
-    int volume;
+    static final int ICE_STATE = 0;
+    static final int WATER_STATE = 1;
+    int stateWater = ICE_STATE;
+
     public Water(double _x, double _y) {
         super(_x, _y);
         this.width=30;
         this.height = 10;
-        volume = (int)(width*height);
     }
 
     @Override
     public void display(Graphics2D g) {
-        g.setColor(Color.BLUE);
-        g.fillRect((int)x+GameCamera.x,(int)y+5,(int)width,(int)height);
+        if (stateWater == WATER_STATE) {
+            AlphaComposite alcom2 = AlphaComposite.getInstance(
+                    AlphaComposite.SRC_OVER, 0.5f);
+            g.setComposite(alcom2);
+            g.setColor(Color.BLUE);
+            g.fillRect((int)x+GameCamera.x,(int)y+5,(int)width,(int)height);
+            AlphaComposite alcom3 = AlphaComposite.getInstance(
+                    AlphaComposite.SRC_OVER, 1f);
+            g.setComposite(alcom3);
+        }
+        else {
+            g.setColor(Color.BLUE.brighter());
+            g.fillRect((int)x+GameCamera.x,(int)y+5,(int)width,(int)height);
+        }
+
     }
 
     @Override
@@ -82,7 +97,17 @@ public class Water extends Displayable {
 
     @Override
     public void gravity() {
-        expandWaterVertically();
+        if (this.stateWater==WATER_STATE) {
+            expandWaterVertically();
+        }
     }
 
+    public void changeState(int dy) {
+        if (this.y-dy<=32) {
+            this.height=32;
+        }
+        else {
+            this.height=dy;
+        }
+    }
 }

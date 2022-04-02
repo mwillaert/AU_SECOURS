@@ -41,6 +41,7 @@ public class Game {
 			p.x=finalPoint.x;
 			p.y=finalPoint.y;
 		}
+
 	}
 	
 	public static int[][] getTerrain() {
@@ -58,9 +59,15 @@ public class Game {
 		listComponents.add(eau);
 		listComponents.add(p);
 	}
-	
+
+	public static void click(int x, int y) {
+		double vx = (x-p.x)/100.0;
+		double vy = (y-p.y)/100.0;
+		Bullet b = new Bullet(p.x,p.y,vx,vy, Bullet.TYPE_ICE);
+	}
+
 	public static void remove(Displayable d) {
 		toRemove.add(d);
 	}
-	
+
 }

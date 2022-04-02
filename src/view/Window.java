@@ -8,8 +8,10 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
-public class Window extends JFrame implements KeyListener{
+public class Window extends JFrame implements KeyListener, MouseListener {
 	/**
 	 * 
 	 */
@@ -95,5 +97,32 @@ public class Window extends JFrame implements KeyListener{
 	@Override
 	public void keyReleased(KeyEvent e) {
 		Controller.handleControls(e.getKeyCode(), false);
+	}
+
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		int x_mouse = e.getX();
+		int y_mouse = e.getY();
+		Game.click(e.getX(), e.getY());
+	}
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+
 	}
 }
