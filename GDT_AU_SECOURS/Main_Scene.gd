@@ -8,9 +8,9 @@ extends Node2D
 var meteor_res=preload("res://Special_Envs/Meteor.tscn")
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	var meteor=meteor_res.instance()
-	
+	var meteor=meteor_res.instance()	
 	add_child(meteor)
+	add_child(Player)
 	pass # Replace with function body.
 
 
