@@ -1,0 +1,60 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://script/main.gd" type="Script" id=1]
+[ext_resource path="res://CollisionPolygon2D.gd" type="Script" id=2]
+[ext_resource path="res://script/player.gd" type="Script" id=3]
+[ext_resource path="res://map.tscn" type="PackedScene" id=4]
+[ext_resource path="res://script/meteor_handler.gd" type="Script" id=5]
+
+[sub_resource type="CircleShape2D" id=3]
+radius = 64.0
+
+[sub_resource type="Gradient" id=1]
+offsets = PoolRealArray( 0 )
+colors = PoolColorArray( 1, 0, 0, 1 )
+
+[sub_resource type="GradientTexture" id=2]
+gradient = SubResource( 1 )
+width = 64
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="map2" parent="." instance=ExtResource( 4 )]
+
+[node name="rect" type="KinematicBody2D" parent="."]
+position = Vector2( 58, 558 )
+motion/sync_to_physics = true
+script = ExtResource( 3 )
+
+[node name="CollisionPolygon2D2" type="CollisionShape2D" parent="rect"]
+visible = false
+shape = SubResource( 3 )
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Area2D" type="Area2D" parent="rect"]
+visible = false
+
+[node name="CollisionPolygon2D" type="CollisionShape2D" parent="rect/Area2D"]
+shape = SubResource( 3 )
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="sprite" type="Sprite" parent="rect"]
+scale = Vector2( 1, 64 )
+texture = SubResource( 2 )
+region_rect = Rect2( 0, 0, 64, 64 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="meteor_handler" type="Node2D" parent="."]
+script = ExtResource( 5 )
+
+[connection signal="area_entered" from="rect/Area2D" to="rect" method="_on_Area2D_area_entered"]
+[connection signal="body_shape_entered" from="rect/Area2D" to="rect" method="_on_Area2D_body_shape_entered"]
