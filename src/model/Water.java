@@ -6,8 +6,13 @@ import java.util.List;
 public class Water extends Displayable {
     static final int ICE_STATE = 0;
     static final int WATER_STATE = 1;
-    int stateWater = WATER_STATE;
+    static final int EXPANSION_HORIZONTAL = 0;
+    static final int EXPANSION_VERTICAL = 1;
 
+    int stateExpansion = EXPANSION_VERTICAL;
+    int stateWater = WATER_STATE;
+    Water wChildren = null;
+    Water wParent = null;
     public Water(double _x, double _y) {
         super(_x, _y);
         this.width=30;
@@ -52,7 +57,7 @@ public class Water extends Displayable {
         this.height+=2;
         this.y+=2;
         int collisionh = Calculs.collisionTerrainH(this,Game.getTerrain(),vx,0);
-        if (collisionh==3 && collisionh == 4) {
+        if (collisionh==3 || collisionh == 4) {
             this.width-=2;
             this.x+=1;
             this.height+=2;
@@ -69,6 +74,15 @@ public class Water extends Displayable {
         int collisionv = Calculs.collisionTerrainV(this,Game.getTerrain(),0,1);
         if (collisionv!=1 && collisionv!=2) {
             this.height+=1;
+        }
+        else {
+            if (this.wChildren==null) {
+                this.wChildren = new Water(this.x, this.y + this.height - 64);
+                wChildren.height = 64;
+                wChildren.wParent = this;
+                wChildren.stateExpansion=EXPANSION_HORIZONTAL;
+                Game.addObject(wChildren);
+            }
         }
         return true;
     }
@@ -100,22 +114,35 @@ public class Water extends Displayable {
 
     @Override
     public void gravity() {
-        if (this.stateWater==WATER_STATE) {
-            expandWaterVertically();
+        if (this.stateWater==WATER_STATE && stateExpansion == EXPANSION_VERTICAL) {
+            if (stateExpansion==EXPANSION_VERTICAL) {
+                expandWaterVertically();
+            }
+            else if (stateExpansion==EXPANSION_HORIZONTAL) {
+                expandWaterHorizontally();
+            }
         }
     }
 
     public void changeState(int dx, int dy) {
         if (this.stateWater==WATER_STATE) {
-            if (Math.abs(this.y-dy)<=32) {
-                this.height=32;
+            if (this.stateExpansion==EXPANSION_VERTICAL) {
+                if (Math.abs(this.y-dy)<=32) {
+                    this.height=32;
+                }
+                else {
+                    this.height=Math.abs(this.y-dy);
+                }
+                this.physics=true;
+                this.calculateCollision=true;
+                this.stateWater=ICE_STATE;
             }
             else {
-                this.height=Math.abs(this.y-dy);
+                this.physics=true;
+                this.calculateCollision=true;
+                this.stateWater=ICE_STATE;
             }
-            this.physics=true;
-            this.calculateCollision=true;
-            this.stateWater=ICE_STATE;
+
         }
 
     }
