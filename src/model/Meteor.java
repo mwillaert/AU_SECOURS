@@ -1,9 +1,6 @@
 package model;
 
-<<<<<<< HEAD
-=======
 import java.awt.*;
->>>>>>> 8d47340f84c4396163ba423090d6f8e64eb2cd95
 import java.util.List;
 
 public class Meteor extends Displayable{
@@ -14,35 +11,24 @@ public class Meteor extends Displayable{
         this.setSpeed(_speedx,_speedy);
     }
 
-    @Override
-<<<<<<< HEAD
-    public void setBoxCollision() {
-=======
     public void display(Graphics2D g) {
         g.setColor(Color.ORANGE);
         g.fillRect((int)x+GameCamera.x,(int)y+5,(int)width,(int)height);
->>>>>>> 8d47340f84c4396163ba423090d6f8e64eb2cd95
-
     }
 
     @Override
-<<<<<<< HEAD
-=======
     public void setBoxCollision() {
         this.calculateCollision=true;
         this.physics=false;
     }
 
     @Override
->>>>>>> 8d47340f84c4396163ba423090d6f8e64eb2cd95
     public void setTypeObject() {
 
     }
 
     @Override
     public void calculCollision(List<Displayable> objects) {
-<<<<<<< HEAD
-=======
         int collisionv = Calculs.collisionTerrainV(this,Game.getTerrain(),0,vy);
         if (collisionv==1) {
             vy=vy>0?vy:0;
@@ -57,9 +43,6 @@ public class Meteor extends Displayable{
         else if (collisionh==4) {
             vx=vx<0?vx:0;
         }
-
->>>>>>> 8d47340f84c4396163ba423090d6f8e64eb2cd95
-
     }
 
     @Override
@@ -69,9 +52,6 @@ public class Meteor extends Displayable{
 
     @Override
     public void gravity() {
-<<<<<<< HEAD
 
-=======
->>>>>>> 8d47340f84c4396163ba423090d6f8e64eb2cd95
     }
 }
