@@ -17,9 +17,6 @@ export var speed: = Vector2(400.0, 900.0)
 export var gravity: = 3500.0
 
 var _velocity: = Vector2.ZERO
-var is_jump_interrupted = false
-
-
 func _physics_process(delta: float) -> void:
 	_velocity.y += gravity * delta
 	var is_jump_interrupted: = Input.is_action_just_released("jump") and _velocity.y < 0.0
@@ -29,7 +26,6 @@ func _physics_process(delta: float) -> void:
 	_velocity = move_and_slide_with_snap(
 		_velocity, snap, FLOOR_NORMAL, true
 	)
-
 
 func get_direction() -> Vector2:
 	var dx = 0
