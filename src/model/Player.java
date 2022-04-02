@@ -75,7 +75,7 @@ public class Player extends Displayable {
 			int collision = Calculs.collision(this, obj, (int)vx, (int)vy);
 			if (collision!=0 && obj.id!=this.id) {
 
-				this.actionObject(obj.actionCollisionPerso(collision, this));
+				this.actionObject(obj.actionCollisionPerso(collision));
 				if (obj.physics) {
 					if (collision==3||collision==4) {
 						this.vx=0;
@@ -95,7 +95,7 @@ public class Player extends Displayable {
 	}
 
 	@Override
-	public int actionCollisionPerso(int side, Player p) {
+	public int actionCollisionPerso(int side) {
 		// TODO Auto-generated method stub
 		//Nothing happens
 		return NOTHING;

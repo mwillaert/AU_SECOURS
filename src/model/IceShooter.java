@@ -30,7 +30,7 @@ public class IceShooter extends Displayable {
     }
 
     @Override
-    public int actionCollisionPerso(int arg, Player p) {
+    public int actionCollisionPerso(int arg) {
         return 0;
     }
 
