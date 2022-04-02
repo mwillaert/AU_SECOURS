@@ -70,4 +70,17 @@ public class Game {
 		toRemove.add(d);
 	}
 
+	public void handleLevel(int numLevel){
+		//numLevel donne le niveau ou on est
+		switch (numLevel) {
+			case 1 :
+				this.handleLevel1();
+		}
+	}
+
+	public static void handleLevel1(){
+		//Generation aleatoire de meteorites
+
+	}
+
 }
