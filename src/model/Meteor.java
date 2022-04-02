@@ -6,8 +6,8 @@ import java.util.List;
 public class Meteor extends Displayable{
     public Meteor(double _x, double _y, double _speedx, double _speedy) {
         super(_x, _y);
-        this.width=30;
-        this.height = 10;
+        this.width=20;
+        this.height = 20;
         this.setSpeed(_speedx,_speedy);
     }
 
@@ -54,7 +54,7 @@ public class Meteor extends Displayable{
     }
 
     @Override
-    public int actionCollisionPerso(int arg, Player p) {
+    public int actionCollisionPerso(int arg) {
         return 0;
     }
 
