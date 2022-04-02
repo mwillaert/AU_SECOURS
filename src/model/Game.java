@@ -12,9 +12,12 @@ public class Game {
 	static Player p;
 	public static boolean end;
 	public static boolean cont = true;
+
+	static Level lvl;
 	
 	public static void loop() {
 		p.move(Controller.left_pressed, Controller.right_pressed, Controller.up_pressed);
+		lvl.handleLevel();
 		for (Displayable d : toRemove) {
 			listComponents.remove(d);
 		}
@@ -68,19 +71,6 @@ public class Game {
 
 	public static void remove(Displayable d) {
 		toRemove.add(d);
-	}
-
-	public void handleLevel(int numLevel){
-		//numLevel donne le niveau ou on est
-		switch (numLevel) {
-			case 1 :
-				this.handleLevel1();
-		}
-	}
-
-	public static void handleLevel1(){
-		//Generation aleatoire de meteorites
-
 	}
 
 }
