@@ -19,7 +19,8 @@ public class Bullet extends Displayable {
 
     @Override
     public void setBoxCollision() {
-
+        this.calculateCollision=true;
+        this.physics=true;
     }
 
     @Override
@@ -30,9 +31,9 @@ public class Bullet extends Displayable {
     @Override
     public void calculCollision(List<Displayable> objects) {
         for (Displayable d : objects) {
-            if (d instanceof Water) {
+            if (d instanceof Water && Calculs.collision(this, d, (int)vx, (int)vy)!=0) {
                 this.remove();
-                ((Water)d).changeState(Water.ICE_STATE);
+                ((Water)d).changeState((int)this.x,(int)this.y);
             }
         }
     }

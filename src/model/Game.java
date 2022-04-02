@@ -7,6 +7,7 @@ import java.util.List;
 import controller.Controller;
 
 public class Game {
+	static List<Displayable> toAdd = new LinkedList<>();
 	static List<Displayable> toRemove = new LinkedList<>();
 	static List<Displayable> listComponents = new LinkedList<>();
 	static Player p;
@@ -19,7 +20,10 @@ public class Game {
 			listComponents.remove(d);
 		}
 		toRemove.clear();
-		
+		for (Displayable d : toAdd) {
+			listComponents.add(d);
+		}
+		toAdd.clear();
 		for (Displayable d : listComponents) {
 			if (d.calculateCollision) {
 				d.calculCollision(listComponents);
@@ -51,6 +55,10 @@ public class Game {
 	public static List<Displayable> getListeDisplayable() {
 		return listComponents;
 	}
+
+	public static void addObject(Displayable d) {
+		listComponents.add(d);
+	}
 	
 	public static void reinitialisation() {
 		p = new Player(10,200);
@@ -64,6 +72,8 @@ public class Game {
 		double vx = (x-p.x)/100.0;
 		double vy = (y-p.y)/100.0;
 		Bullet b = new Bullet(p.x,p.y,vx,vy, Bullet.TYPE_ICE);
+		listComponents.add(b);
+		System.out.println("azefzg");
 	}
 
 	public static void remove(Displayable d) {
