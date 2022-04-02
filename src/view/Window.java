@@ -1,19 +1,113 @@
 package view;
 
-import javax.swing.*;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Image;
+import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
-public class Window extends JFrame {
-    private static Window instance = new Window();
-    Camera c = new Camera();
-    Thread t;
-    public Window() {
-        this.setSize(600,400);
-        this.setResizable(false);
-        this.setVisible(false);
-        this.setContentPane(c);
-    }
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
 
-    public static Window getInstance() {
-        return instance;
-    }
+import controller.Controller;
+import model.Game;
+import model.Terrain;
+import resources.Resources;
+
+public class Window extends JFrame implements KeyListener{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
+	public static Camera drawing;
+	
+	JPanel container;
+	Thread t;
+
+	public static void main(String[] args) {
+		@SuppressWarnings("unused")
+		Window f = new Window();
+	}
+	
+	public Window() {
+		//Initialize the window and call the functions for the initialization
+		super();
+		Resources.loadResources();
+		configureCamera();
+		getDifferencesDimension();
+		setGraphicsWindow();
+		setEvenementiel();
+		Game.reinitialisation();
+		enterLoop();
+	}
+	
+	public void setGraphicsWindow() {
+		//This function is used for the graphics of the window
+		this.setVisible(true);
+		this.setSize(640+bh,480+bv);
+		this.setResizable(false);
+		this.setTitle("Pac-man");
+		Image icon = Toolkit.getDefaultToolkit().getImage("Graphics/icone.png");  
+		this.setIconImage(icon);  
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		
+	}
+	
+	public static int bh;
+	public static int bv;
+	public void getDifferencesDimension() {
+		//To find the decalage between the real size of the window and the size of the screen
+		bh = getSize().width - drawing.getSize().width;
+		bv = getSize().height - drawing.getSize().height;
+	}
+	
+	public void setEvenementiel() {
+		//Creation of the evenementiel (keylistener for the game)
+		this.addKeyListener(this);
+	}
+	
+	public void configureCamera() {
+		//Configure the content of the JFrame
+		drawing = new Camera();
+
+        this.setContentPane(drawing);
+    	setVisible(true);
+	}
+	
+	public void enterLoop() {
+		while (true) {
+			try {
+				Game.loop();
+				drawing.repaint();
+				Thread.sleep(5);
+			}
+			catch (Exception e) {
+				
+			}
+		}
+	}
+	@Override
+	public void keyTyped(KeyEvent e) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void keyPressed(KeyEvent e) {
+		Controller.handleControls(e.getKeyCode(), true);
+	}
+
+	@Override
+	public void keyReleased(KeyEvent e) {
+		Controller.handleControls(e.getKeyCode(), false);
+	}
 }
