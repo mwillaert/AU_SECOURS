@@ -53,6 +53,9 @@ public abstract class Physical {
 		y+=vy;
 		vx+=ax;
 		vy+=ay;
+		if (x<0) {
+			x=0;
+		}
 		gravity();
 		anim();
 	}

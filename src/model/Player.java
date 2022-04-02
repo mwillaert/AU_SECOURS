@@ -74,6 +74,7 @@ public class Player extends Displayable {
 		for (Displayable obj : objects) {	
 			int collision = Calculs.collision(this, obj, (int)vx, (int)vy);
 			if (collision!=0 && obj.id!=this.id) {
+
 				this.actionObject(obj.actionCollisionPerso(collision, this));
 				if (obj.physics) {
 					if (collision==3||collision==4) {

@@ -13,10 +13,14 @@ public class Water extends Displayable {
     int stateWater = WATER_STATE;
     Water wChildren = null;
     Water wParent = null;
-    public Water(double _x, double _y) {
+    int xchild;
+    int wchild;
+    public Water(double _x, double _y, int xchild, int wchild) {
         super(_x, _y);
         this.width=30;
         this.height = 10;
+        this.xchild = xchild;
+        this.wchild = wchild;
     }
 
     @Override
@@ -52,21 +56,26 @@ public class Water extends Displayable {
     }
 
     public boolean expandWaterHorizontally() {
-        this.width+=2;
-        this.x-=1;
-        this.height+=2;
-        this.y+=2;
-        int collisionh = Calculs.collisionTerrainH(this,Game.getTerrain(),vx,0);
-        if (collisionh==3 || collisionh == 4) {
-            this.width-=2;
-            this.x+=1;
-            this.height+=2;
-            this.y-=2;
-            return false;
-        }
-        else if (collisionh==3) {
+        int collisionh = Calculs.collisionTerrainH(this,Game.getTerrain(),-8,0);
 
+        if (collisionh!=3 && collisionh != 4) {
+            this.width+=1;
+            this.x-=0.5;
+            this.height-=1;
+            this.y+=1;
         }
+        else if (this.x>this.wParent.xchild) {
+            this.width+=1;
+            this.x-=1;
+            this.height-=1;
+            this.y+=1;
+        }
+        else if (this.width<this.wParent.wchild) {
+            this.width+=1;
+            this.height-=1;
+            this.y+=1;
+        }
+
         return true;
     }
 
@@ -77,7 +86,7 @@ public class Water extends Displayable {
         }
         else {
             if (this.wChildren==null) {
-                this.wChildren = new Water(this.x, this.y + this.height - 64);
+                this.wChildren = new Water(this.x, this.y + this.height - 64, 0, 0);
                 wChildren.height = 64;
                 wChildren.wParent = this;
                 wChildren.stateExpansion=EXPANSION_HORIZONTAL;
@@ -114,7 +123,7 @@ public class Water extends Displayable {
 
     @Override
     public void gravity() {
-        if (this.stateWater==WATER_STATE && stateExpansion == EXPANSION_VERTICAL) {
+        if (this.stateWater==WATER_STATE) {
             if (stateExpansion==EXPANSION_VERTICAL) {
                 expandWaterVertically();
             }

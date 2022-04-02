@@ -66,7 +66,7 @@ public class Game {
 	public static void reinitialisation() {
 		p = new Player(10,200);
 		p.side=true;
-		Water eau = new Water(90,200);
+		Water eau = new Water(90,200, 2*32, 2*32);
 		listComponents.add(eau);
 		listComponents.add(p);
 	}
