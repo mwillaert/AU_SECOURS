@@ -1,7 +1,6 @@
 package model;
 
-import java.awt.Graphics2D;
-import java.awt.Image;
+import java.awt.*;
 import java.util.List;
 
 import resources.Resources;
@@ -25,8 +24,9 @@ public abstract class Displayable extends Physical {
 	}
 
 	public void display(Graphics2D g) {
-		g.drawImage(listeImages[idAnim],(int)x+GameCamera.x+(side?0:1)*(int)width,(int)y+5,(side?1:-1)*(int)width,(int)height,null);
-		
+		g.setColor(Color.RED);
+		g.fillRect((int)x+GameCamera.x,(int)y+5,(int)width,(int)height);
+
 	}
 	
 

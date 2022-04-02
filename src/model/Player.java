@@ -24,8 +24,8 @@ public class Player extends Displayable {
 	static final double SPEED_SMALL_JUMP = 2.5;
 	
 	static final int SPEED_ANIM = 80;
-	static final int WIDTH = 48;
-	static final int HEIGHT = 48;
+	static final int WIDTH = 30;
+	static final int HEIGHT = 30;
 	
 	private boolean accrocher = false;
 	private boolean accrochel = false;
@@ -37,19 +37,11 @@ public class Player extends Displayable {
 	}
 
 	@Override
-	public void display(Graphics2D g) {
-		// TODO Auto-generated method stub
-		g.drawImage(Resources.persoanim[idAnim],(int)x+GameCamera.x+(side?0:1)*(int)width,(int)y+5,(side?1:-1)*(int)width,(int)height,null);
-	
-	}
-
-	@Override
 	public void setBoxCollision() {
 		// TODO Auto-generated method stub
 		this.calculateCollision=true;
-		this.dx1=16;
-		this.dx2=16;
-		this.dy1=10;
+		this.dx1=4;
+		this.dx2=4;
 	}
 
 	@Override
@@ -168,7 +160,6 @@ public class Player extends Displayable {
 				accrochel=false;
 			}
 		}
-
 	}
 	
 	public void move_direction(boolean left) {

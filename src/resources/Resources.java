@@ -1,5 +1,7 @@
 package resources;
 
+import model.Terrain;
+
 import java.awt.Image;
 import java.io.File;
 import java.io.IOException;
@@ -31,7 +33,8 @@ public class Resources {
 			for (int i = 0;i<9;i++) {
 				slimeanim[i] = ImageIO.read(new File("src/resources/slimeanim"+ (i+1) + ".png"));
 			}
-			level=ImageIO.read(new File("src/resources/level1.png"));
+			Terrain.genereImageTerrain();
+			level=Terrain.imageTerrain;
 			gradient=ImageIO.read(new File("src/resources/gradient.png"));
 			title = ImageIO.read(new File("src/resources/title.png"));
 			credits = ImageIO.read(new File("src/resources/tobecontinued.png"));

@@ -1,5 +1,6 @@
 package model;
 
+import java.awt.*;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -25,9 +26,21 @@ public class Game {
 			}
 			d.loop();
 		}
+
 		GameCamera.calculeCamera(p, Terrain.terrain1[0].length*Settings.SIZE_CASE);
 		if (p.x>=(Terrain.terrain1[0].length-4)*32) {
-			end=true;
+			end = true;
+		}
+		System.out.println(p.y);
+		if (p.y>=(Terrain.terrain1.length-2)*32) {
+			Point finalPoint = new Point();
+			for (Point point : Terrain.listPointsSave) {
+				if (point.x<p.x) {
+					finalPoint = point;
+				}
+			}
+			p.x=finalPoint.x;
+			p.y=finalPoint.y;
 		}
 	}
 	
@@ -42,9 +55,7 @@ public class Game {
 	public static void reinitialisation() {
 		p = new Player(10,200);
 		p.side=true;
-		Slime s= new Slime(1200,100);
 		listComponents.add(p);
-		listComponents.add(s);
 	}
 	
 	public static void remove(Displayable d) {

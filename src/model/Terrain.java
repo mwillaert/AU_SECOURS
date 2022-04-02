@@ -1,15 +1,13 @@
 package model;
 
-import java.awt.Color;
-import java.awt.Graphics2D;
-import java.awt.Image;
+import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.IOException;
-
-import resources.FilesHandler;
-import resources.Resources;
+import java.util.LinkedList;
+import java.util.List;
 
 public class Terrain {
+	public static Point[] listPointsSave = new Point[]{new Point(29*32,8*32)};
+
 	public static int[][] terrain1 = new int[][]   {{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 9,11,11,11,10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
 													{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 9,11,11,11,10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
 													{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 9,11,11,11,10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
@@ -25,9 +23,10 @@ public class Terrain {
 													{ 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 6, 0, 0, 0, 0, 4, 5, 5, 5, 5, 5, 5, 5, 5, 6, 0, 0, 0, 0, 0, 0, 4, 5, 5, 5, 5, 6, 0, 0, 0, 0, 0, 4, 5, 5, 5, 3, 9,11,11,11,11,11,11,11,11,11,11,11,11,11},
 													{ 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 6, 0, 0, 0, 0, 4, 5, 5, 5, 5, 5, 5, 5, 5, 6, 0, 0, 0, 0, 0, 0, 4, 5, 5, 5, 5, 6, 0, 0, 0, 0, 0, 4, 5, 5, 5, 5, 3, 9,11,11,11,11,11,11,11,11,11,11,11,11},
 													{ 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 6, 0, 0, 0, 0, 4, 5, 5, 5, 5, 5, 5, 5, 5, 6, 0, 0, 0, 0, 0, 0, 4, 5, 5, 5, 5, 6, 0, 0, 0, 0, 0, 4, 5, 5, 5, 5, 5, 3, 9,11,11,11,11,11,11,11,11,11,11,11},
+													{ 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 6, 0, 0, 0, 0, 4, 5, 5, 5, 5, 5, 5, 5, 5, 6, 0, 0, 0, 0, 0, 0, 4, 5, 5, 5, 5, 6, 0, 0, 0, 0, 0, 4, 5, 5, 5, 5, 5, 3, 9,11,11,11,11,11,11,11,11,11,11,11},
+													{ 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 6, 0, 0, 0, 0, 4, 5, 5, 5, 5, 5, 5, 5, 5, 6, 0, 0, 0, 0, 0, 0, 4, 5, 5, 5, 5, 6, 0, 0, 0, 0, 0, 4, 5, 5, 5, 5, 5, 3, 9,11,11,11,11,11,11,11,11,11,11,11},
 													{ 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 6, 0, 0, 0, 0, 4, 5, 5, 5, 5, 5, 5, 5, 5, 6, 0, 0, 0, 0, 0, 0, 4, 5, 5, 5, 5, 6, 0, 0, 0, 0, 0, 4, 5, 5, 5, 5, 5, 3, 9,11,11,11,11,11,11,11,11,11,11,11}};
-
-													public static BufferedImage imageTerrain;
+	public static BufferedImage imageTerrain;
 	
 	public static void genereImageTerrain() {
 		imageTerrain = new BufferedImage(terrain1[0].length*Settings.SIZE_CASE, terrain1[0].length*Settings.SIZE_CASE, BufferedImage.TYPE_INT_ARGB);
@@ -36,17 +35,12 @@ public class Terrain {
 			for (int x=0;x<Terrain.terrain1[0].length;x++) {
 				if (Terrain.terrain1[y][x]!=0) {
 					g2d.setColor(Color.black);
-					g2d.drawImage(Resources.blocs[Terrain.terrain1[y][x]-1],x*Settings.SIZE_CASE + GameCamera.x, y*Settings.SIZE_CASE,null);
-				
+					g2d.fillRect(x*Settings.SIZE_CASE + GameCamera.x, y*Settings.SIZE_CASE, Settings.SIZE_CASE, Settings.SIZE_CASE);
+					//g2d.drawImage(Resources.blocs[Terrain.terrain1[y][x]-1],x*Settings.SIZE_CASE + GameCamera.x, y*Settings.SIZE_CASE,null);
+
 				}
 			}
 		}
-		
-		try {
-			FilesHandler.sauverImage(imageTerrain, "level1");
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+
 	}
 }
