@@ -30,8 +30,6 @@ public class Camera extends JPanel {
 		for (Displayable d : Game.getListeDisplayable()) {
 			d.display(g2d);
 		}
-		g2d.drawImage(Resources.gradient, GameCamera.x,0,null);
-
 	}
 
 	

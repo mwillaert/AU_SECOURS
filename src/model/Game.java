@@ -31,7 +31,6 @@ public class Game {
 		if (p.x>=(Terrain.terrain1[0].length-4)*32) {
 			end = true;
 		}
-		System.out.println(p.y);
 		if (p.y>=(Terrain.terrain1.length-2)*32) {
 			Point finalPoint = new Point();
 			for (Point point : Terrain.listPointsSave) {
@@ -55,6 +54,8 @@ public class Game {
 	public static void reinitialisation() {
 		p = new Player(10,200);
 		p.side=true;
+		Water eau = new Water(90,200);
+		listComponents.add(eau);
 		listComponents.add(p);
 	}
 	

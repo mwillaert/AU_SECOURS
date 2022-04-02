@@ -63,7 +63,7 @@ public abstract class Physical {
 	
 	public abstract void calculCollision(List<Displayable> objects);
 	
-	public abstract int actionCollisionPerso(int arg);
+	public abstract int actionCollisionPerso(int arg, Player p);
 
 	public abstract void gravity();
 	
