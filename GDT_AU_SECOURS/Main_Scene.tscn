@@ -3,9 +3,6 @@
 [ext_resource path="res://BasicTile.png" type="Texture" id=1]
 [ext_resource path="res://Player.gd" type="Script" id=2]
 
-[sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 16, 16 )
-
 [sub_resource type="Gradient" id=5]
 offsets = PoolRealArray( 0, 0.753968, 1 )
 colors = PoolColorArray( 0.933594, 0.411161, 0.0651344, 1, 0.753968, 0.753968, 0.753968, 1, 1, 1, 1, 1 )
@@ -13,6 +10,9 @@ colors = PoolColorArray( 0.933594, 0.411161, 0.0651344, 1, 0.753968, 0.753968, 0
 [sub_resource type="GradientTexture" id=6]
 gradient = SubResource( 5 )
 width = 32
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 16, 16 )
 
 [sub_resource type="ConvexPolygonShape2D" id=4]
 points = PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 )
@@ -56,19 +56,26 @@ extents = Vector2( 16, 16 )
 [node name="Player" type="KinematicBody2D" parent="."]
 script = ExtResource( 2 )
 
+<<<<<<< HEAD:GDT_AU_SECOURS/Node2D.tscn
+[node name="Sprite" type="Sprite" parent="KinematicBody2D"]
+=======
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
 shape = SubResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="Player"]
+>>>>>>> b1325110d3d73302bddb0c682e195b6e2245ecee:GDT_AU_SECOURS/Main_Scene.tscn
 scale = Vector2( 1, 32 )
 texture = SubResource( 6 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="KinematicBody2D"]
+shape = SubResource( 2 )
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource( 3 )
 cell_size = Vector2( 32, 32 )
 cell_custom_transform = Transform2D( 32, 0, 0, 32, 0, 0 )
 format = 1
-tile_data = PoolIntArray( 393210, 0, 0, 393211, 0, 0, 393212, 0, 0, 393213, 0, 0, 393214, 0, 0, 393215, 0, 0, 327680, 0, 0, 327681, 0, 0, 327682, 0, 0, 327683, 0, 0, 327684, 0, 0, 327685, 0, 0 )
+tile_data = PoolIntArray( 196610, 0, 0, 262146, 0, 0, 393210, 0, 0, 393211, 0, 0, 393212, 0, 0, 393213, 0, 0, 393214, 0, 0, 393215, 0, 0, 327680, 0, 0, 327681, 0, 0, 327682, 0, 0, 327683, 0, 0, 327684, 0, 0, 327685, 0, 0 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TileMap"]
 
