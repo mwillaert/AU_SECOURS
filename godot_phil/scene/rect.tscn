@@ -14,7 +14,7 @@ gradient = SubResource( 1 )
 width = 64
 
 [node name="rect" type="KinematicBody2D"]
-position = Vector2( 161, 558 )
+position = Vector2( -3, 2 )
 motion/sync_to_physics = true
 script = ExtResource( 1 )
 

@@ -8,9 +8,20 @@
 
 config_version=4
 
+_global_script_classes=[ {
+"base": "KinematicBody2D",
+"class": "Meteor",
+"language": "GDScript",
+"path": "res://script/meteor.gd"
+} ]
+_global_script_class_icons={
+"Meteor": ""
+}
+
 [application]
 
 config/name="gamejam2022"
+run/main_scene="res://scene/main.tscn"
 config/icon="res://icon.png"
 
 [display]
