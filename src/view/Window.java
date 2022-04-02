@@ -61,6 +61,7 @@ public class Window extends JFrame implements KeyListener, MouseListener {
 	public void setEvenementiel() {
 		//Creation of the evenementiel (keylistener for the game)
 		this.addKeyListener(this);
+		this.addMouseListener(this);
 	}
 	
 	public void configureCamera() {
@@ -101,9 +102,7 @@ public class Window extends JFrame implements KeyListener, MouseListener {
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		int x_mouse = e.getX();
-		int y_mouse = e.getY();
-		Game.click(e.getX(), e.getY());
+		Game.click(e.getX(), e.getY()-20);
 	}
 
 	@Override

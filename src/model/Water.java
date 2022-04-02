@@ -6,7 +6,7 @@ import java.util.List;
 public class Water extends Displayable {
     static final int ICE_STATE = 0;
     static final int WATER_STATE = 1;
-    int stateWater = ICE_STATE;
+    int stateWater = WATER_STATE;
 
     public Water(double _x, double _y) {
         super(_x, _y);
@@ -88,6 +88,7 @@ public class Water extends Displayable {
             vx=vx<0?vx:0;
         }
 
+
     }
 
     @Override
@@ -102,12 +103,16 @@ public class Water extends Displayable {
         }
     }
 
-    public void changeState(int dy) {
-        if (this.y-dy<=32) {
-            this.height=32;
+    public void changeState(int dx, int dy) {
+        if (this.stateWater==WATER_STATE) {
+            if (Math.abs(this.y-dy)<=32) {
+                this.height=32;
+            }
+            else {
+                this.height=Math.abs(this.y-dy);
+            }
+            this.stateWater=ICE_STATE;
         }
-        else {
-            this.height=dy;
-        }
+
     }
 }
