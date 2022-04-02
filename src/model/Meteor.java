@@ -11,6 +11,14 @@ public class Meteor extends Displayable{
         this.setSpeed(_speedx,_speedy);
     }
 
+    @Override
+    public void loop(){
+        super.loop();
+        if (this.x<=5){
+            this.remove();
+        }
+    }
+
     public void display(Graphics2D g) {
         g.setColor(Color.ORANGE);
         g.fillRect((int)x+GameCamera.x,(int)y+5,(int)width,(int)height);

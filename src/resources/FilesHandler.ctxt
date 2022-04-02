@@ -1,0 +1,5 @@
+#BlueJ class context
+comment0.target=FilesHandler
+comment1.params=image\ nomImage
+comment1.target=void\ sauverImage(java.awt.image.BufferedImage,\ java.lang.String)
+numComments=2

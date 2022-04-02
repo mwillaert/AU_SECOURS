@@ -20,7 +20,7 @@ public class Level {
         long timeInterval=System.currentTimeMillis()-dateLastMeteor;
         System.out.println(timeInterval);
         if (timeInterval>=timeUntilMeteor){
-            //generateRandomMeteor();
+            generateRandomMeteor();
             dateLastMeteor=System.currentTimeMillis();
         }
         //Generation aleatoire de meteorites
