@@ -10,8 +10,7 @@ config_version=4
 
 [application]
 
-config/name="Gdt Au Secours"
-run/main_scene="res://Main_Scene.tscn"
+config/name="Gdt Experiments"
 config/icon="res://icon.png"
 
 [physics]
