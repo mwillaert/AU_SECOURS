@@ -14,7 +14,7 @@ public class Game {
 	public static boolean end;
 	public static boolean cont = true;
 
-	static Level lvl;
+	static Level lvl = new Level();
 	
 	public static void loop() {
 		p.move(Controller.left_pressed, Controller.right_pressed, Controller.up_pressed);
@@ -76,7 +76,6 @@ public class Game {
 		double vy = (y-p.y)/100.0;
 		Bullet b = new Bullet(p.x,p.y,vx,vy, Bullet.TYPE_ICE);
 		listComponents.add(b);
-		System.out.println("azefzg");
 	}
 
 	public static void remove(Displayable d) {

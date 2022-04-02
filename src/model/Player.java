@@ -29,7 +29,8 @@ public class Player extends Displayable {
 	
 	private boolean accrocher = false;
 	private boolean accrochel = false;
-	
+	private boolean aboveObject = false;
+
 	public Player(double _x, double _y) {
 		super(_x, _y, WIDTH, HEIGHT);
 		listeImages = Resources.persoanim;
@@ -69,18 +70,24 @@ public class Player extends Displayable {
 		}
 		
 		//2.) Collision avec les ennemis et les objets
+		aboveObject=false;
 		for (Displayable obj : objects) {	
 			int collision = Calculs.collision(this, obj, (int)vx, (int)vy);
-			
 			if (collision!=0 && obj.id!=this.id) {
 				this.actionObject(obj.actionCollisionPerso(collision, this));
 				if (obj.physics) {
 					if (collision==3||collision==4) {
 						this.vx=0;
 					}
-					if (collision==1||collision==2) {
+					if (collision==1) {
 						this.vy=0;
+						aboveObject=true;
 					}
+					else if (collision==2) {
+						this.vy=0;
+						aboveObject=true;
+					}
+
 				}
 			}			
 		}
@@ -217,9 +224,10 @@ public class Player extends Displayable {
 		
 		if (keyu) {
 			int collisionv = Calculs.collisionTerrainV(this,Game.getTerrain(),0,10);
-			if (collisionv==1) {
+			System.out.println(aboveObject);
+			if (collisionv==1 || aboveObject) {
 				jump();
-			}			
+			}
 			if (Settings.SAUT_MURAL) {
 				if (accrocher == true || accrochel == true) {
 					wall_jump();

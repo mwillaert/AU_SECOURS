@@ -7,7 +7,7 @@ public class Level {
         //numLevel donne le niveau ou on est
         switch (currentLevel) {
             case 1 :
-                this.handleLevel1();
+                Level.handleLevel1();
         }
     }
 

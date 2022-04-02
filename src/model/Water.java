@@ -37,6 +37,8 @@ public class Water extends Displayable {
     public void setBoxCollision() {
         this.calculateCollision=false;
         this.physics=false;
+        this.dx1=-4;
+        this.dx2=-4;
     }
 
     @Override
@@ -111,6 +113,8 @@ public class Water extends Displayable {
             else {
                 this.height=Math.abs(this.y-dy);
             }
+            this.physics=true;
+            this.calculateCollision=true;
             this.stateWater=ICE_STATE;
         }
 
