@@ -14,7 +14,7 @@ public class Meteor extends Displayable{
     @Override
     public void loop(){
         super.loop();
-        if (this.x<=5){
+        if (this.x<=5-GameCamera.x){
             this.remove();
         }
     }
