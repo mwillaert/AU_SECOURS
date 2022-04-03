@@ -19,24 +19,34 @@ func _ready():
 func _physics_process(delta):
 	
 	if Input.is_action_just_released("ui_rotate"):
-		
-		var time = 1.0
-		var nb_steps = 100
-		var dt = time/nb_steps
-		var dtheta = -PI/2 * 1/nb_steps
-		
-		for i in range(nb_steps):
-			
-			map.rotate(dtheta)
-			map.position += get_dtranslation(map.rotation, -dtheta)
-			print(map.rotation)
-			print(get_translation(map.rotation))
-			
-			
-			# Waiting
-			yield(get_tree().create_timer(dt), "timeout")
-		
+		interpolate_rotation()
 	
+	
+	return
+
+func interpolate_rotation():
+	
+	var time = 1.0
+	var nb_steps = 100
+	var dt = time/nb_steps
+	var dtheta = -PI/2 * 1/nb_steps
+	
+	for i in range(nb_steps):
+		
+		map.rotate(dtheta)
+		map.position += get_dtranslation(map.rotation, -dtheta)
+		print(map.rotation)
+		print(get_translation(map.rotation))
+		
+		
+		# Waiting
+		yield(get_tree().create_timer(dt), "timeout")
+	
+	# Fixing position fuzz after interpolation
+	if (is_equal_approx(abs(map.rotation), PI/2)):
+		map.rotation = sign(map.rotation) * PI/2
+	if (is_equal_approx(abs(map.rotation), PI)):
+		map.rotation = sign(map.rotation) * PI
 	
 	return
 
