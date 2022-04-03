@@ -1,9 +1,8 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://script/main.gd" type="Script" id=1]
 [ext_resource path="res://scene/player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://map.tscn" type="PackedScene" id=4]
-[ext_resource path="res://script/meteor_handler.gd" type="Script" id=5]
 
 [node name="main" type="Node"]
 script = ExtResource( 1 )
@@ -15,9 +14,6 @@ anchor_bottom = 1.0
 color = Color( 0, 0, 0, 1 )
 
 [node name="map" parent="." instance=ExtResource( 4 )]
-
-[node name="meteor_handler" type="Node2D" parent="."]
-script = ExtResource( 5 )
 
 [node name="player" parent="." instance=ExtResource( 2 )]
 position = Vector2( 814, 184 )
