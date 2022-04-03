@@ -19,7 +19,7 @@ export var gravity: = 3500.0
 var _velocity: = Vector2.ZERO
 func _physics_process(delta: float) -> void:
 	_velocity.y += gravity * delta
-	var is_jump_interrupted: = Input.is_action_just_released("jump") and _velocity.y < 0.0
+	var is_jump_interrupted: =  _velocity.y < 0.0
 	var direction: = get_direction()
 	_velocity = calculate_move_velocity(_velocity, direction, speed, is_jump_interrupted)
 	var snap: Vector2 = Vector2.DOWN * 60.0 if direction.y == 0.0 else Vector2.ZERO
