@@ -6,7 +6,7 @@ var meteor_res:Resource = preload("res://scene/meteor.tscn")
 
 func _ready():
 	
-	spawn_meteors()
+#	spawn_meteors()
 	
 	return
 
